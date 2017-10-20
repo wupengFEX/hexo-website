@@ -6,6 +6,8 @@ tags: [MIP, Access, 设计方案, AMP]
 
 > `MIP ACCESS`是一种页面访问权限控制机制，能够允许网页发布者在页面元素中定义内容标记，并结合用户访问情况进行综合评价，从而展现或隐藏页面中内容，直至用户登录、订阅或付费后才能够查看隐藏内容的一种全新阅读模式。
 
+<br>
+
 ### 什么是MIP ACCESS
 `MIP ACCESS`是一种页面访问权限控制机制，能够允许网页发布者在页面元素中定义内容标记，并结合用户访问情况进行综合评价，从而展现或隐藏页面中内容，直至用户登录、订阅或付费后才能够查看隐藏内容的一种全新阅读模式。
 
@@ -16,24 +18,19 @@ tags: [MIP, Access, 设计方案, AMP]
 - 配置灵活：发布者可以根据不同的需求配置不同接口，如数据请求接口、访问记录接口、登录页面、登出页面等；
 
 ### DEMO演示
-
 在说具体实现和细节之前，我们列举了四个`DEMO`认识一下`ACCESS`到底是一个怎样的存在吧！
 
 - `DEMO1`演示了`ACCESS`的基本功能，该案例提供了1篇首次点击免费文章和3篇免费文章，首次点击免费是指在第一次访问该域名下具有`ACCESS`功能的页面时免费查看的功能；如果访问文章数目超过4篇时，页面中配置有`ACCESS`属性的模块将会隐藏，登录后方可查看全部；
-
-  <img src="/img/articles/mip-access/mip-access.gif" width="30%">
+<p><img src="/img/articles/mip-access/mip-access.gif" width="30%"></p>
 
 - `DEMO2`演示的是登录功能，案例制定的策略是登录后所有文章均免费查看；
-
-  <img src="/img/articles/mip-access/mip-access-login.gif" width="30%">
+<p><img src="/img/articles/mip-access/mip-access-login.gif" width="30%"></p>
 
 - `DEMO3`演示了`ACCESS`登出功能，登出后受到权限限制；
-
-  <img src="/img/articles/mip-access/mip-access-logout.gif" width="30%">
+<p><img src="/img/articles/mip-access/mip-access-logout.gif" width="30%"></p>
 
 - `DEMO4`演示了重置数据的功能，重置会删除后端数据，由各自策略而定，在重置成功后所有页面的浏览记录均被删除；
-
-  <img src="/img/articles/mip-access/mip-access-reset.gif" width="30%">
+<p><img src="/img/articles/mip-access/mip-access-reset.gif" width="30%"></p>
 
 ### 名词解释
 在讲具体细节之前，大家先熟悉熟悉这些专有名词吧！
@@ -98,8 +95,7 @@ tags: [MIP, Access, 设计方案, AMP]
 
 ### 实现细节
 
-<img src="/img/articles/mip-access/mip-access.png">
-
+<img src="/img/articles/mip-access/mip-access.png"><br>
 上图为纯前端方式实现`ACCESS`的时序图，下面就以这个引子来说一下`ACCESS`的工作流程吧！
 - 首先用户在访问页面时，请求会发送到`CDN`（页面嵌套在`Super Frame`中）或者开发者（单个`MIP`页面）自己的服务器上，此时返回`html`文档给用户，这样做是为了让用户能够第一时间看到页面，缩短请求的白屏时间；
 - 在`html`文档返回之后启动`MIP Runtime`服务，并将页面中以`mip-access-hide`属性标记的所有`DOM`元素隐藏起来，同时根据开发中提供的`Authorization`接口发起请求；
